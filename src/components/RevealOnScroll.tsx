@@ -5,12 +5,14 @@ interface RevealOnScrollProps {
   children: React.ReactNode;
   threshold?: number;
   delay?: number;
+  direction?: 'up' | 'down' | 'left' | 'right';
 }
 
 const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ 
   children, 
   threshold = 0.1, 
-  delay = 0 
+  delay = 0,
+  direction = 'up'
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   
@@ -39,8 +41,21 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({
     };
   }, [threshold, delay]);
   
+  const getTransformClass = () => {
+    switch (direction) {
+      case 'up': return 'translate-y-10';
+      case 'down': return '-translate-y-10';
+      case 'left': return 'translate-x-10';
+      case 'right': return '-translate-x-10';
+      default: return 'translate-y-10';
+    }
+  };
+  
   return (
-    <div ref={ref} className="reveal">
+    <div 
+      ref={ref} 
+      className={`reveal ${getTransformClass()} opacity-0 transition-all duration-700`}
+    >
       {children}
     </div>
   );
