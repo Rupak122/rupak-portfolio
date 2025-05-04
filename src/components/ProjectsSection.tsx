@@ -135,7 +135,7 @@ const ProjectsSection = () => {
             title="COINTRIBE"
             description="Spearheaded technical development for scalable web applications, ensuring robust architecture and performance."
             period="12/2020 - 08/2022"
-            technologies={["Chart.js", "AWS EC2", "Nginx", "CI/CD"]}
+            technologies={["Angular","Node.js","Chart.js", "AWS EC2", "Nginx", "CI/CD"]}
             achievements={[
               "Developed an auto-rejection rule engine that automatically filters out non-eligible loan applications, significantly reducing manual efforts for over 7 lending partners",
               "Designed and implemented dynamic data visualization of bank statements using Chart.js, enabling clear insights through tabular and graphical representations"
@@ -146,7 +146,7 @@ const ProjectsSection = () => {
             title="HMAM"
             description="Led end-to-end technical development for web applications, ensuring scalability and reliability."
             period="01/2021 - 12/2021"
-            technologies={["Google Cloud Platform", "Cloud Functions", "Mortech APIs"]}
+            technologies={["Google Cloud Platform", "Cloud Functions", "Mortech APIs","Angular","Node.js","Chart.js",]}
             achievements={[
               "Led end-to-end technical development for web applications, ensuring scalability and reliability",
               "Made key decisions on the technology stack, aligning project requirements with modern development practices",

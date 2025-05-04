@@ -88,20 +88,6 @@ const ExperienceSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           <ExperienceCard
-            title="Senior Frontend Developer"
-            company="TechInnovate Solutions"
-            period="Apr 2024 - Present"
-            location="San Francisco, USA"
-            achievements={[
-              "Leading a team of 4 developers in building a next-gen SaaS dashboard using React and TypeScript",
-              "Implemented micro-frontend architecture reducing build times by 65% and improving team velocity",
-              "Established comprehensive component testing strategy achieving 92% code coverage",
-              "Mentored junior developers through code reviews and pair programming sessions"
-            ]}
-            technologies={["React", "TypeScript", "Next.js", "TailwindCSS", "Jest", "Cypress"]}
-          />
-          
-          <ExperienceCard
             title="Freelance, Full Stack Developer"
             company="Self-employed"
             period="Sep 2022 - Present"
@@ -115,23 +101,11 @@ const ExperienceSection = () => {
             technologies={["React", "Node.js", "Express", "MongoDB", "GraphQL", "AWS", "Docker"]}
           />
           
-          <ExperienceCard
-            title="UI/UX Developer"
-            company="DesignFirst Agency"
-            period="Jun 2021 - Aug 2022"
-            location="Berlin, Germany (Remote)"
-            achievements={[
-              "Developed responsive interfaces for 12+ client websites using modern CSS frameworks",
-              "Created interactive prototypes with Figma that improved client approval rates by 40%",
-              "Collaborated with design team to implement accessibility best practices (WCAG 2.1)",
-              "Optimized frontend performance achieving 90+ Lighthouse scores across projects"
-            ]}
-            technologies={["HTML5", "CSS3/SCSS", "JavaScript", "Figma", "Sketch", "Adobe XD"]}
-          />
+          
           
           <ExperienceCard
             title="Software Engineer"
-            company="Shopti Technologies"
+            company="Skugal Technologies"
             period="Dec 2020 - Mar 2024"
             location="Remote (India)"
             achievements={[

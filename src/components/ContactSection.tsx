@@ -73,15 +73,15 @@ const ContactSection = () => {
           <ContactCard 
             icon={<Mail size={24} />}
             title="Email"
-            value="rupak577@gmail.com"
-            href="mailto:rupak577@gmail.com"
+            value="rupak8770985@gmail.com"
+            href="mailto:rupak8770985@gmail.com"
           />
           
           <ContactCard 
             icon={<Phone size={24} />}
             title="Phone"
-            value="+91 9871536936"
-            href="tel:+919871536936"
+            value="+91 9871510636"
+            href="tel:+919871510636"
           />
           
           <ContactCard 

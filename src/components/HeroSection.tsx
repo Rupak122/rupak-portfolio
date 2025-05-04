@@ -59,7 +59,7 @@ const HeroSection = () => {
               
               <div className="flex items-center pt-4 space-x-6">
                 <a 
-                  href="https://github.com/rupak577" 
+                  href="https://github.com/rupak122" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-slate-700 hover:text-portfolio-primary transition-colors"
@@ -68,7 +68,7 @@ const HeroSection = () => {
                   <span className="sr-only">GitHub</span>
                 </a>
                 <a 
-                  href="https://linkedin.com/in/rupak577" 
+                  href="https://linkedin.com/in/rupak8770985" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-slate-700 hover:text-portfolio-primary transition-colors"
@@ -77,14 +77,14 @@ const HeroSection = () => {
                   <span className="sr-only">LinkedIn</span>
                 </a>
                 <a 
-                  href="mailto:rupak577@gmail.com" 
+                  href="mailto:rupak8770985@gmail.com" 
                   className="text-slate-700 hover:text-portfolio-primary transition-colors"
                 >
                   <Mail size={20} />
                   <span className="sr-only">Email</span>
                 </a>
                 <a 
-                  href="tel:+919871536936" 
+                  href="tel:+919871510636" 
                   className="text-slate-700 hover:text-portfolio-primary transition-colors"
                 >
                   <Phone size={20} />
