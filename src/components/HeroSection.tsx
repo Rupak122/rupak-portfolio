@@ -21,7 +21,7 @@ const HeroSection = () => {
             <div className="relative">
               <div className="absolute inset-0 rounded-full bg-portfolio-primary blur-xl opacity-20 animate-pulse-light"></div>
               <img 
-                src="/lovable-uploads/80829c63-3000-4e05-ab88-d36255a49972.png" 
+                src="./lovable-uploads/profile.png" 
                 alt="Rupak Kumar Singh CV" 
                 className="w-full max-w-md rounded-lg shadow-xl transform hover:scale-[1.02] transition-transform duration-300"
               />
