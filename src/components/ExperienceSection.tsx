@@ -24,18 +24,18 @@ const ExperienceCard = ({
 }: ExperienceCardProps) => {
   return (
     <RevealOnScroll threshold={0.1} delay={200} direction="right">
-      <Card className="border-l-4 border-l-portfolio-primary transition-all duration-300 hover:shadow-lg hover:-translate-y-1 experience-card">
+      <Card className="border-l-4 border-l-blue-500 bg-white dark:bg-slate-800/50 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 experience-card group">
         <CardContent className="p-6">
           <div className="space-y-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-xl font-bold text-portfolio-dark">{title}</h3>
-                <div className="flex items-center mt-1 text-portfolio-primary">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">{title}</h3>
+                <div className="flex items-center mt-1 text-blue-500">
                   <Building size={16} className="mr-1" />
                   <span className="font-medium">{company}</span>
                 </div>
               </div>
-              <div className="px-3 py-1 text-sm font-medium bg-purple-100 text-portfolio-primary rounded-full">
+              <div className="px-3 py-1 text-sm font-medium bg-blue-100 text-blue-500 rounded-full dark:bg-blue-900/30">
                 {period}
               </div>
             </div>
@@ -45,10 +45,10 @@ const ExperienceCard = ({
               <span>{location}</span>
             </div>
             
-            <ul className="space-y-2 text-sm text-slate-700">
+            <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
               {achievements.map((achievement, index) => (
                 <li key={index} className="flex items-start">
-                  <ArrowRight size={14} className="mr-2 mt-1 text-portfolio-primary flex-shrink-0" />
+                  <ArrowRight size={14} className="mr-2 mt-1 text-blue-500 flex-shrink-0" />
                   <span>{achievement}</span>
                 </li>
               ))}
@@ -57,7 +57,7 @@ const ExperienceCard = ({
             {technologies && (
               <div className="flex flex-wrap gap-2 pt-2">
                 {technologies.map((tech, index) => (
-                  <Badge key={index} variant="outline" className="bg-purple-50 text-portfolio-primary border-purple-200 hover:bg-purple-100">
+                  <Badge key={index} variant="outline" className="bg-blue-50 text-blue-500 border-blue-200 hover:bg-blue-100 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400">
                     {tech}
                   </Badge>
                 ))}
@@ -72,15 +72,15 @@ const ExperienceCard = ({
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-20 bg-gradient-to-b from-white to-slate-50">
+    <section id="experience" className="py-20 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4 md:px-6">
         <RevealOnScroll threshold={0.1}>
           <div className="text-center mb-16">
-            <div className="inline-block p-3 bg-purple-100 rounded-lg mb-4">
-              <Briefcase size={24} className="text-portfolio-primary" />
+            <div className="inline-block p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg mb-4">
+              <Briefcase size={24} className="text-blue-500" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-portfolio-dark">Professional Experience</h2>
-            <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Professional Experience</h2>
+            <p className="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
               My journey building scalable web applications and delivering efficient solutions.
             </p>
           </div>
