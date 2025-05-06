@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { ExternalLink, Github, Layout } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import RevealOnScroll from './RevealOnScroll';
 
 interface ProjectCardProps {
   title: string;
@@ -24,99 +25,80 @@ const ProjectCard = ({
   liveUrl
 }: ProjectCardProps) => {
   return (
-    <Card className="h-full hover:shadow-lg transition-all duration-300 project-card">
-      <CardContent className="p-6">
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xl font-bold text-portfolio-dark">{title}</h3>
-            <span className="text-sm text-slate-500">{period}</span>
-          </div>
-          
-          <p className="text-slate-600">{description}</p>
-          
-          <ul className="space-y-2 text-sm text-slate-700 list-disc pl-4">
-            {achievements.map((achievement, index) => (
-              <li key={index}>{achievement}</li>
-            ))}
-          </ul>
-          
-          <div className="flex flex-wrap gap-2 pt-2">
-            {technologies.map((tech, index) => (
-              <Badge key={index} variant="outline" className="bg-purple-50 text-portfolio-primary border-portfolio-primary/20">
-                {tech}
-              </Badge>
-            ))}
-          </div>
-          
-          <div className="flex space-x-4 pt-2">
-            {githubUrl && (
-              <a 
-                href={githubUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center text-sm text-slate-700 hover:text-portfolio-primary transition-colors"
-              >
-                <Github size={16} className="mr-1" />
-                <span>Repository</span>
-              </a>
-            )}
+    <RevealOnScroll>
+      <Card className="h-full hover:shadow-lg transition-all duration-300 project-card border-blue-100 dark:border-blue-900/30">
+        <CardContent className="p-6">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">{title}</h3>
+              <span className="text-sm text-slate-500 dark:text-slate-400">{period}</span>
+            </div>
             
-            {liveUrl && (
-              <a 
-                href={liveUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center text-sm text-slate-700 hover:text-portfolio-primary transition-colors"
-              >
-                <ExternalLink size={16} className="mr-1" />
-                <span>Live Demo</span>
-              </a>
-            )}
+            <p className="text-slate-600 dark:text-slate-300">{description}</p>
+            
+            <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300 list-disc pl-4">
+              {achievements.map((achievement, index) => (
+                <li key={index}>{achievement}</li>
+              ))}
+            </ul>
+            
+            <div className="flex flex-wrap gap-2 pt-2">
+              {technologies.map((tech, index) => (
+                <Badge key={index} variant="outline" className="bg-blue-50 text-blue-600 border-blue-200 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400">
+                  {tech}
+                </Badge>
+              ))}
+            </div>
+            
+            <div className="flex space-x-4 pt-2">
+              {githubUrl && (
+                <a 
+                  href={githubUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-sm text-slate-700 hover:text-blue-600 transition-colors dark:text-slate-300 dark:hover:text-blue-400"
+                >
+                  <Github size={16} className="mr-1" />
+                  <span>Repository</span>
+                </a>
+              )}
+              
+              {liveUrl && (
+                <a 
+                  href={liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-sm text-slate-700 hover:text-blue-600 transition-colors dark:text-slate-300 dark:hover:text-blue-400"
+                >
+                  <ExternalLink size={16} className="mr-1" />
+                  <span>Live Demo</span>
+                </a>
+              )}
+            </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </RevealOnScroll>
   );
 };
 
 const ProjectsSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    const currentSection = sectionRef.current;
-    if (currentSection) {
-      observer.observe(currentSection);
-    }
-    
-    return () => {
-      if (currentSection) {
-        observer.unobserve(currentSection);
-      }
-    };
-  }, []);
-  
   return (
-    <section id="projects" className="py-20 bg-white">
+    <section id="projects" className="py-20 bg-white dark:bg-slate-800">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12 reveal" ref={sectionRef}>
-          <div className="inline-block p-2 bg-purple-100 rounded-lg mb-4">
-            <Layout size={24} className="text-portfolio-primary" />
+        <RevealOnScroll>
+          <div className="text-center mb-12">
+            <div className="inline-block p-2 bg-blue-100 rounded-lg mb-4 dark:bg-blue-900/30">
+              <Layout size={24} className="text-blue-600" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Notable Projects</h2>
+            <p className="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+              Some of the significant projects I've worked on throughout my career.
+            </p>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-portfolio-dark">Notable Projects</h2>
-          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
-            Some of the significant projects I've worked on throughout my career.
-          </p>
-        </div>
+        </RevealOnScroll>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <ProjectCard
             title="ERP System"
             description="Complete technical development of both web dashboards and mobile applications."
@@ -146,7 +128,7 @@ const ProjectsSection = () => {
             title="HMAM"
             description="Led end-to-end technical development for web applications, ensuring scalability and reliability."
             period="01/2021 - 12/2021"
-            technologies={["Google Cloud Platform", "Cloud Functions", "Mortech APIs","Angular","Node.js","Chart.js",]}
+            technologies={["Google Cloud Platform", "Cloud Functions", "Mortech APIs","Angular","Node.js","Chart.js"]}
             achievements={[
               "Led end-to-end technical development for web applications, ensuring scalability and reliability",
               "Made key decisions on the technology stack, aligning project requirements with modern development practices",

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Code, Database, Layout } from "lucide-react";
+import { Code, Database, Layout, Server } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import RevealOnScroll from './RevealOnScroll';
@@ -14,13 +14,13 @@ interface SkillCategoryProps {
 const SkillCategory = ({ title, icon, skills }: SkillCategoryProps) => {
   return (
     <RevealOnScroll>
-      <Card className="hover:shadow-md transition-all duration-300">
+      <Card className="hover:shadow-md transition-all duration-300 border-blue-100 dark:border-blue-900/30">
         <CardContent className="p-6">
           <div className="flex items-center mb-4">
-            <div className="mr-4 p-2 bg-purple-100 rounded-lg">
+            <div className="mr-4 p-2 bg-blue-100 rounded-lg dark:bg-blue-900/30">
               {icon}
             </div>
-            <h3 className="text-xl font-bold text-portfolio-dark">{title}</h3>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white">{title}</h3>
           </div>
           
           <div className="flex flex-wrap gap-2">
@@ -28,7 +28,7 @@ const SkillCategory = ({ title, icon, skills }: SkillCategoryProps) => {
               <Badge 
                 key={index}
                 variant="secondary" 
-                className="bg-slate-100 text-slate-700 hover:bg-slate-200"
+                className="bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300"
               >
                 {skill}
               </Badge>
@@ -62,15 +62,15 @@ const SkillsSection = () => {
   ];
   
   return (
-    <section id="skills" className="py-20 bg-slate-50">
+    <section id="skills" className="py-20 bg-slate-50 dark:bg-slate-900">
       <div className="container mx-auto px-4 md:px-6">
         <RevealOnScroll>
           <div className="text-center mb-12">
-            <div className="inline-block p-2 bg-purple-100 rounded-lg mb-4">
-              <Code size={24} className="text-portfolio-primary" />
+            <div className="inline-block p-2 bg-blue-100 rounded-lg mb-4 dark:bg-blue-900/30">
+              <Code size={24} className="text-blue-600" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-portfolio-dark">Technical Skills</h2>
-            <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Technical Skills</h2>
+            <p className="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
               My technical toolkit that I've developed and refined over the years.
             </p>
           </div>
@@ -79,25 +79,25 @@ const SkillsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <SkillCategory 
             title="Frontend Development" 
-            icon={<Layout size={24} className="text-portfolio-primary" />}
+            icon={<Layout size={24} className="text-blue-600" />}
             skills={frontendSkills}
           />
           
           <SkillCategory 
             title="Backend Development" 
-            icon={<Code size={24} className="text-portfolio-primary" />}
+            icon={<Server size={24} className="text-blue-600" />}
             skills={backendSkills}
           />
           
           <SkillCategory 
             title="Databases" 
-            icon={<Database size={24} className="text-portfolio-primary" />}
+            icon={<Database size={24} className="text-blue-600" />}
             skills={databaseSkills}
           />
           
           <SkillCategory 
             title="DevOps" 
-            icon={<Code size={24} className="text-portfolio-primary" />}
+            icon={<Code size={24} className="text-blue-600" />}
             skills={devOpsSkills}
           />
         </div>

@@ -25,9 +25,9 @@ const TypewriterText = ({ text, delay = 100, onComplete }: TypewriterTextProps) 
   }, [currentIndex, text, delay, onComplete]);
 
   return (
-    <span className="inline-block font-mono">
+    <span className="inline-block">
       {displayedText}
-      <span className="animate-pulse text-blue-500">_</span>
+      <span className="animate-pulse text-blue-600">_</span>
     </span>
   );
 };
