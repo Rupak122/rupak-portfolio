@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Fira+Code:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -96,6 +96,47 @@
   }
 }
 
+/* Floating animation for tech icons */
+@keyframes float {
+  0% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes float-delay-1 {
+  0% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-15px) rotate(-5deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes float-delay-2 {
+  0% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes float-delay-3 {
+  0% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-12px) rotate(-3deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+  animation: float-delay-1 7s ease-in-out infinite 1s;
+}
+
+.animate-float-delay-2 {
+  animation: float-delay-2 5s ease-in-out infinite 0.5s;
+}
+
+.animate-float-delay-3 {
+  animation: float-delay-3 8s ease-in-out infinite 1.5s;
+}
+
 .timeline-dot::after {
   content: '';
   position: absolute;
@@ -135,6 +176,27 @@
   animation: scroll-indicator 2s infinite;
 }
 
+/* Code highlight */
+.code-highlight {
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.1) 0%, rgba(56, 189, 248, 0) 100%);
+  animation: highlight 2s ease-in-out infinite;
+}
+
+@keyframes highlight {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Terminal blinking cursor */
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* For sections to reveal on scroll */
 .reveal {
   opacity: 0;
@@ -155,4 +217,58 @@
 .project-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.1), 0 10px 10px -5px rgba(124, 58, 237, 0.04);
+}
+
+/* Animated skill progress */
+@keyframes skill-progress {
+  from { width: 0; }
+  to { width: var(--progress); }
+}
+
+.skill-progress {
+  animation: skill-progress 1.5s ease-out forwards;
+}
+
+/* Terminal style code block */
+.code-block {
+  @apply font-mono text-xs sm:text-sm bg-slate-800 text-slate-200 rounded-lg p-4 overflow-x-auto border border-slate-700 relative;
+}
+
+.code-block::before {
+  content: "";
+  @apply absolute top-0 left-0 w-full h-6 bg-slate-700 rounded-t-lg;
+}
+
+.code-block::after {
+  content: "• • •";
+  @apply absolute top-0 left-0 text-slate-500 mx-2 my-1;
+}
+
+.code-block code {
+  @apply block pt-6;
+}
+
+/* Syntax highlighting */
+.token.comment {
+  @apply text-slate-500;
+}
+
+.token.keyword {
+  @apply text-purple-400;
+}
+
+.token.string {
+  @apply text-green-400;
+}
+
+.token.number {
+  @apply text-yellow-400;
+}
+
+.token.operator {
+  @apply text-blue-400;
+}
+
+.token.function {
+  @apply text-blue-400;
 }

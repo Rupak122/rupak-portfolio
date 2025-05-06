@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 interface TypewriterTextProps {
   text: string;
   delay?: number;
+  onComplete?: () => void;
 }
 
-const TypewriterText = ({ text, delay = 100 }: TypewriterTextProps) => {
+const TypewriterText = ({ text, delay = 100, onComplete }: TypewriterTextProps) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -18,13 +19,15 @@ const TypewriterText = ({ text, delay = 100 }: TypewriterTextProps) => {
       }, delay);
 
       return () => clearTimeout(timeout);
+    } else if (onComplete) {
+      onComplete();
     }
-  }, [currentIndex, text, delay]);
+  }, [currentIndex, text, delay, onComplete]);
 
   return (
     <span className="inline-block font-mono">
       {displayedText}
-      <span className="animate-pulse">|</span>
+      <span className="animate-pulse text-blue-500">_</span>
     </span>
   );
 };
