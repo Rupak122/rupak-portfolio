@@ -1,10 +1,18 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Briefcase, Calendar, MapPin, Building, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import RevealOnScroll from './RevealOnScroll';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface TechBadgeProps {
   name: string;
@@ -28,7 +36,6 @@ interface TimelineExperienceProps {
   location: string;
   achievements: string[];
   technologies?: string[];
-  isLast?: boolean;
 }
 
 const TimelineExperience = ({ 
@@ -38,68 +45,55 @@ const TimelineExperience = ({
   location, 
   achievements, 
   technologies,
-  isLast = false
 }: TimelineExperienceProps) => {
   return (
-    <div className="relative">
-      {/* Timeline line */}
-      {!isLast && (
-        <div className="absolute left-4 top-6 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-blue-100 dark:to-blue-900"></div>
-      )}
-      
-      {/* Timeline dot */}
-      <div className="absolute left-4 top-6 w-2 h-2 rounded-full bg-blue-600 transform -translate-x-0.5"></div>
-      
-      <div className="pl-12 pb-10">
-        <RevealOnScroll threshold={0.1} delay={200} direction="right">
-          <Card className="bg-white dark:bg-slate-800/50 backdrop-blur-sm transition-all duration-300 hover:shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden relative group">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-indigo-500 transform origin-left transition-transform scale-x-0 group-hover:scale-x-100 duration-300"></div>
-            <CardContent className="p-8 relative z-10">
-              <div className="space-y-6">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">{title}</h3>
-                    <div className="flex items-center mt-2 text-blue-600">
-                      <Building size={16} className="mr-1.5" />
-                      <span className="font-medium">{company}</span>
-                    </div>
-                  </div>
-                  <div className="px-4 py-1.5 text-sm font-medium bg-blue-50 text-blue-600 rounded-full dark:bg-blue-900/30 flex items-center whitespace-nowrap">
-                    <Calendar size={14} className="mr-1.5" />
-                    <span>{period}</span>
-                  </div>
-                </div>
-                
-                <div className="flex items-center text-sm text-slate-500 dark:text-slate-400">
-                  <MapPin size={14} className="mr-1.5" />
-                  <span>{location}</span>
-                </div>
-                
-                <ul className="space-y-3 text-slate-600 dark:text-slate-300">
-                  {achievements.map((achievement, index) => (
-                    <li key={index} className="flex items-start group/item">
-                      <ArrowRight size={14} className="mr-2 mt-1 text-blue-600 flex-shrink-0 transform group-hover/item:translate-x-1 transition-transform" />
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                {technologies && technologies.length > 0 && (
-                  <>
-                    <Separator className="bg-slate-100 dark:bg-slate-700" />
-                    <div className="flex flex-wrap gap-2">
-                      {technologies.map((tech, index) => (
-                        <TechBadge key={index} name={tech} />
-                      ))}
-                    </div>
-                  </>
-                )}
+    <Card className="h-full bg-white dark:bg-slate-800/50 backdrop-blur-sm transition-all duration-300 hover:shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden relative group">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-indigo-500 transform origin-left transition-transform scale-x-0 group-hover:scale-x-100 duration-300"></div>
+      <CardContent className="p-6 relative z-10">
+        <div className="space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">{title}</h3>
+              <div className="flex items-center mt-2 text-blue-600">
+                <Building size={16} className="mr-1.5" />
+                <span className="font-medium">{company}</span>
               </div>
-            </CardContent>
-          </Card>
-        </RevealOnScroll>
-      </div>
-    </div>
+            </div>
+            <div className="px-4 py-1.5 text-sm font-medium bg-blue-50 text-blue-600 rounded-full dark:bg-blue-900/30 flex items-center whitespace-nowrap">
+              <Calendar size={14} className="mr-1.5" />
+              <span>{period}</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center text-sm text-slate-500 dark:text-slate-400">
+            <MapPin size={14} className="mr-1.5" />
+            <span>{location}</span>
+          </div>
+          
+          <ScrollArea className="h-32 pr-4">
+            <ul className="space-y-2 text-slate-600 dark:text-slate-300">
+              {achievements.map((achievement, index) => (
+                <li key={index} className="flex items-start group/item">
+                  <ArrowRight size={14} className="mr-2 mt-1 text-blue-600 flex-shrink-0 transform group-hover/item:translate-x-1 transition-transform" />
+                  <span className="text-sm">{achievement}</span>
+                </li>
+              ))}
+            </ul>
+          </ScrollArea>
+          
+          {technologies && technologies.length > 0 && (
+            <>
+              <Separator className="bg-slate-100 dark:bg-slate-700" />
+              <div className="flex flex-wrap gap-2">
+                {technologies.map((tech, index) => (
+                  <TechBadge key={index} name={tech} />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -134,6 +128,36 @@ const ExperienceSection = () => {
       technologies: [
         "React", "Angular", "TypeScript", "Node.js", "MongoDB", "SQL"
       ]
+    },
+    {
+      title: "Front-end Developer",
+      company: "Digital Solutions Inc.",
+      period: "Jan 2019 - Nov 2020",
+      location: "Bangalore, India",
+      achievements: [
+        "Developed responsive web applications using React and Vue.js for enterprise clients",
+        "Implemented state management solutions with Redux and Vuex across multiple projects",
+        "Collaborated with design team to transform mockups into functional user interfaces",
+        "Optimized frontend performance resulting in 40% faster load times"
+      ],
+      technologies: [
+        "React", "Vue.js", "Redux", "CSS3", "SASS", "Webpack"
+      ]
+    },
+    {
+      title: "Web Development Intern",
+      company: "TechStart Solutions",
+      period: "May 2018 - Dec 2018",
+      location: "Delhi, India",
+      achievements: [
+        "Assisted in developing UI components for client websites using HTML, CSS, and JavaScript",
+        "Participated in daily stand-ups and agile development processes",
+        "Created documentation for code and processes to improve team knowledge sharing",
+        "Built small-scale projects under supervision to improve coding practices"
+      ],
+      technologies: [
+        "HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap"
+      ]
     }
   ];
 
@@ -151,19 +175,37 @@ const ExperienceSection = () => {
           </div>
         </RevealOnScroll>
         
-        <div className="max-w-4xl mx-auto">
-          {experiences.map((exp, index) => (
-            <TimelineExperience
-              key={index}
-              title={exp.title}
-              company={exp.company}
-              period={exp.period}
-              location={exp.location}
-              achievements={exp.achievements}
-              technologies={exp.technologies}
-              isLast={index === experiences.length - 1}
-            />
-          ))}
+        <div className="max-w-5xl mx-auto px-4">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {experiences.map((exp, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="h-full">
+                    <RevealOnScroll threshold={0.1} delay={index * 100} direction="right">
+                      <TimelineExperience
+                        title={exp.title}
+                        company={exp.company}
+                        period={exp.period}
+                        location={exp.location}
+                        achievements={exp.achievements}
+                        technologies={exp.technologies}
+                      />
+                    </RevealOnScroll>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>
