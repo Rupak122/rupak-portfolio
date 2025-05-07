@@ -6,26 +6,33 @@ import { Button } from "@/components/ui/button";
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
   
+  // Safe check for window object
   const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
+    if (typeof window !== 'undefined') {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
     }
   };
   
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    if (typeof window !== 'undefined') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   };
   
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility);
-    };
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', toggleVisibility);
+      return () => {
+        window.removeEventListener('scroll', toggleVisibility);
+      };
+    }
   }, []);
   
   return (
@@ -33,7 +40,7 @@ const ScrollToTop = () => {
       <Button 
         onClick={scrollToTop} 
         size="icon" 
-        className="bg-portfolio-primary hover:bg-portfolio-secondary h-12 w-12 rounded-full shadow-lg"
+        className="bg-blue-600 hover:bg-blue-700 h-12 w-12 rounded-full shadow-lg"
         aria-label="Scroll to top"
       >
         <ArrowUp size={20} />

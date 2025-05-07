@@ -14,16 +14,24 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({
   delay = 0,
   direction = 'up'
 }) => {
+  // Using useState and useRef safely
   const ref = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
+    // Make sure we're in a browser environment
+    if (typeof window === 'undefined') return;
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           setTimeout(() => {
-            entry.target.classList.add('active');
+            if (entry.target) {
+              entry.target.classList.add('active');
+            }
           }, delay);
-          observer.unobserve(entry.target);
+          if (ref.current) {
+            observer.unobserve(ref.current);
+          }
         }
       },
       { threshold }
