@@ -19,11 +19,11 @@ const GlowingBorder = ({
       <div 
         className={`relative p-[1px] rounded-lg overflow-hidden shadow-lg transition-all duration-500 hover:shadow-xl ${className}`}
         style={{
-          background: `linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.4) 100%)`,
-          boxShadow: '0 8px 32px rgba(31, 38, 135, 0.2)'
+          background: `linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.2) 100%)`,
+          boxShadow: '0 8px 32px rgba(31, 38, 135, 0.1)'
         }}
       >
-        <div className="relative z-10 w-full h-full rounded-[inherit] overflow-hidden bg-white dark:bg-slate-800/80 backdrop-blur-sm">
+        <div className="relative z-10 w-full h-full rounded-[inherit] overflow-hidden bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm">
           {children}
         </div>
       </div>

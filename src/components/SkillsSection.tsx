@@ -1,42 +1,43 @@
 
 import React from 'react';
 import { Code, Database, Layout, Server } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 import RevealOnScroll from './RevealOnScroll';
-import GlowingBorder from './animations/GlowingBorder';
 
 interface SkillCategoryProps {
   title: string;
   icon: React.ReactNode;
   skills: string[];
+  bgColor: string;
+  iconColor: string;
 }
 
-const SkillCategory = ({ title, icon, skills }: SkillCategoryProps) => {
+const SkillCategory = ({ title, icon, skills, bgColor, iconColor }: SkillCategoryProps) => {
   return (
     <RevealOnScroll>
-      <GlowingBorder elegant={true}>
-        <Card className="hover:shadow-lg transition-all duration-300 border-slate-200 dark:border-slate-700 overflow-hidden h-full">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-800 p-3 flex items-center">
-            <div className="p-2 rounded-full bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 mr-2">
+      <div className="relative overflow-hidden group">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 transform translate-y-3/4 group-hover:translate-y-0 transition-all duration-500"></div>
+        <div className="relative z-10 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className={`${bgColor} p-4 flex items-center`}>
+            <div className={`p-3 rounded-full ${iconColor} mr-4 flex items-center justify-center`}>
               {icon}
             </div>
-            <h3 className="font-medium text-slate-800 dark:text-white">{title}</h3>
+            <h3 className="font-medium text-xl text-slate-800 dark:text-white">{title}</h3>
           </div>
           
-          <CardContent className="p-4 relative z-10 bg-white dark:bg-slate-800">
-            <div className="grid grid-cols-2 gap-2">
+          <div className="p-5 relative z-10">
+            <div className="grid grid-cols-2 gap-3">
               {skills.map((skill, index) => (
                 <div 
                   key={index} 
-                  className="py-1.5 px-2 rounded hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors text-slate-700 dark:text-slate-300 text-sm"
+                  className="py-2 px-3 rounded bg-slate-50 dark:bg-slate-700/50 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors text-slate-700 dark:text-slate-300 text-sm border border-slate-100 dark:border-slate-700"
                 >
                   {skill}
                 </div>
               ))}
             </div>
-          </CardContent>
-        </Card>
-      </GlowingBorder>
+          </div>
+        </div>
+      </div>
     </RevealOnScroll>
   );
 };
@@ -63,41 +64,53 @@ const SkillsSection = () => {
   ];
   
   return (
-    <section id="skills" className="py-16 bg-white dark:bg-slate-900">
+    <section id="skills" className="py-20 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4">
         <RevealOnScroll>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Technical Expertise</h2>
-            <div className="w-20 h-1 bg-blue-500 mx-auto mt-4"></div>
-            <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              Specialized in modern web technologies with a focus on building scalable and efficient applications
-            </p>
+          <div className="text-center mb-16">
+            <div className="inline-block">
+              <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider uppercase bg-blue-100 dark:bg-blue-900/30 py-1 px-3 rounded-full mb-3 inline-block">My Expertise</span>
+            </div>
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-white">Technical Skills</h2>
+            <div className="max-w-2xl mx-auto mt-4">
+              <p className="text-slate-600 dark:text-slate-400">
+                Specialized in modern web technologies with a focus on building scalable and efficient applications
+              </p>
+            </div>
           </div>
         </RevealOnScroll>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <SkillCategory 
             title="Frontend" 
-            icon={<Layout size={18} />}
+            icon={<Layout size={24} className="text-blue-600 dark:text-blue-400" />}
             skills={frontendSkills}
+            bgColor="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20"
+            iconColor="bg-blue-100 dark:bg-blue-900/40"
           />
           
           <SkillCategory 
             title="Backend" 
-            icon={<Server size={18} />}
+            icon={<Server size={24} className="text-green-600 dark:text-green-400" />}
             skills={backendSkills}
+            bgColor="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20"
+            iconColor="bg-green-100 dark:bg-green-900/40"
           />
           
           <SkillCategory 
             title="Database" 
-            icon={<Database size={18} />}
+            icon={<Database size={24} className="text-amber-600 dark:text-amber-400" />}
             skills={databaseSkills}
+            bgColor="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20"
+            iconColor="bg-amber-100 dark:bg-amber-900/40"
           />
           
           <SkillCategory 
             title="DevOps" 
-            icon={<Code size={18} />}
+            icon={<Code size={24} className="text-purple-600 dark:text-purple-400" />}
             skills={devOpsSkills}
+            bgColor="bg-gradient-to-r from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20"
+            iconColor="bg-purple-100 dark:bg-purple-900/40"
           />
         </div>
       </div>

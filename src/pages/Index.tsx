@@ -30,16 +30,12 @@ const Index = () => {
       <NavBar />
       
       <main className="relative z-10 w-full">
-        {/* Full-width hero section */}
+        {/* Full-width sections without card designs */}
         <HeroSection />
-        
-        {/* Container for other sections */}
-        <div className="container mx-auto px-4">
-          <ExperienceSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <ContactSection />
-        </div>
+        <ExperienceSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ContactSection />
       </main>
       
       <Footer />

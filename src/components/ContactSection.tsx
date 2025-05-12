@@ -1,44 +1,12 @@
 
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import RevealOnScroll from './RevealOnScroll';
 import { useToast } from "@/hooks/use-toast";
-import GlowingBorder from './animations/GlowingBorder';
 import AnimatedBackground from './animations/AnimatedBackground';
-
-interface ContactCardProps {
-  icon: React.ReactNode;
-  title: string;
-  value: string;
-  href: string;
-}
-
-const ContactCard = ({ icon, title, value, href }: ContactCardProps) => (
-  <RevealOnScroll animation="slide" direction="up">
-    <GlowingBorder elegant={true}>
-      <Card className="overflow-hidden bg-white dark:bg-slate-800 border-0">
-        <CardContent className="p-6 flex items-center">
-          <div className="mr-4 p-3 rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
-            {icon}
-          </div>
-          <div>
-            <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">{title}</h4>
-            <a 
-              href={href} 
-              className="text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-            >
-              {value}
-            </a>
-          </div>
-        </CardContent>
-      </Card>
-    </GlowingBorder>
-  </RevealOnScroll>
-);
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -72,170 +40,200 @@ const ContactSection = () => {
   };
   
   return (
-    <AnimatedBackground variant="dots" className="py-20 relative">
+    <section id="contact" className="py-20 relative bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-800">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:20px_20px]"></div>
+      </div>
+      
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <RevealOnScroll animation="scale">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Get In Touch</h2>
-            <div className="w-20 h-1 bg-blue-500 mx-auto mt-4"></div>
-            <p className="mt-6 text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-              Have a project in mind or want to discuss potential opportunities?
-              Feel free to reach out.
-            </p>
+            <div className="inline-block">
+              <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase bg-emerald-100 dark:bg-emerald-900/30 py-1 px-3 rounded-full mb-3 inline-block">Contact</span>
+            </div>
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-white">Get In Touch</h2>
+            <div className="max-w-2xl mx-auto mt-4">
+              <p className="text-slate-600 dark:text-slate-400">
+                Have a project in mind or want to discuss potential opportunities?
+                Feel free to reach out.
+              </p>
+            </div>
           </div>
         </RevealOnScroll>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <ContactCard 
-            icon={<Mail size={24} />}
-            title="Email"
-            value="rupak8770985@gmail.com"
-            href="mailto:rupak8770985@gmail.com"
-          />
-          
-          <ContactCard 
-            icon={<Phone size={24} />}
-            title="Phone"
-            value="+91 9871510636"
-            href="tel:+919871510636"
-          />
-          
-          <ContactCard 
-            icon={<MapPin size={24} />}
-            title="Location"
-            value="New Delhi, India"
-            href="#"
-          />
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <RevealOnScroll animation="slide" direction="left">
-            <GlowingBorder elegant={true}>
-              <Card className="bg-white dark:bg-slate-800 border-0">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6">Send A Message</h3>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                          Your name
-                        </label>
-                        <Input 
-                          id="name" 
-                          placeholder="Enter your name" 
-                          className="border-slate-200 focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800/60"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                          Email address
-                        </label>
-                        <Input 
-                          id="email" 
-                          placeholder="Your email address" 
-                          type="email" 
-                          className="border-slate-200 focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800/60"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+          {/* Contact Info - 2 columns */}
+          <div className="lg:col-span-2 space-y-8">
+            <RevealOnScroll animation="slide" direction="left">
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-xl p-8 border border-slate-200 dark:border-slate-700">
+                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6">Contact Information</h3>
+                
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg mr-4">
+                      <Mail size={22} className="text-blue-600 dark:text-blue-400" />
                     </div>
-                    <div className="space-y-2">
-                      <label htmlFor="subject" className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                        Subject
-                      </label>
-                      <Input 
-                        id="subject" 
-                        placeholder="Subject" 
-                        className="border-slate-200 focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800/60"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                        Message
-                      </label>
-                      <Textarea 
-                        id="message" 
-                        placeholder="Your message" 
-                        rows={6} 
-                        className="border-slate-200 focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800/60"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 flex items-center justify-center group">
-                      <Send size={18} className="mr-2 group-hover:translate-x-1 transition-transform" />
-                      <span>Send Message</span>
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </GlowingBorder>
-          </RevealOnScroll>
-          
-          <RevealOnScroll animation="slide" direction="right">
-            <div className="space-y-6">
-              <GlowingBorder elegant={true}>
-                <Card className="bg-white dark:bg-slate-800 border-0">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6">Connect With Me</h3>
-                    <p className="text-slate-600 dark:text-slate-300 mb-8">
-                      You can also reach out to me through social media or check out my work on these platforms. I'm always open to connecting with fellow developers and potential collaborators.
-                    </p>
-                    
-                    <div className="space-y-4">
-                      <a 
-                        href="https://github.com/rupak122" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 group"
-                      >
-                        <div className="p-2 bg-slate-100 dark:bg-slate-700 rounded-md mr-4 group-hover:bg-blue-100 dark:group-hover:bg-blue-800/30 transition-colors">
-                          <Github size={24} className="text-slate-700 dark:text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">GitHub</h4>
-                          <p className="text-sm text-slate-500 dark:text-slate-400">View my code repositories</p>
-                        </div>
-                      </a>
-                      
-                      <a 
-                        href="https://linkedin.com/in/rupak8770985" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 group"
-                      >
-                        <div className="p-2 bg-slate-100 dark:bg-slate-700 rounded-md mr-4 group-hover:bg-blue-100 dark:group-hover:bg-blue-800/30 transition-colors">
-                          <Linkedin size={24} className="text-slate-700 dark:text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">LinkedIn</h4>
-                          <p className="text-sm text-slate-500 dark:text-slate-400">Connect with me professionally</p>
-                        </div>
+                    <div>
+                      <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Email</h4>
+                      <a href="mailto:rupak8770985@gmail.com" className="text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+                        rupak8770985@gmail.com
                       </a>
                     </div>
-                    
-                    <div className="mt-10 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800/50">
-                      <p className="text-blue-700 dark:text-blue-300 text-sm">
-                        <span className="font-semibold">Looking to hire?</span> I'm currently available for freelance work and full-time opportunities.
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 p-2 bg-green-100 dark:bg-green-900/30 rounded-lg mr-4">
+                      <Phone size={22} className="text-green-600 dark:text-green-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Phone</h4>
+                      <a href="tel:+919871510636" className="text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+                        +91 9871510636
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg mr-4">
+                      <MapPin size={22} className="text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Location</h4>
+                      <p className="text-slate-800 dark:text-white font-medium">
+                        New Delhi, India
                       </p>
                     </div>
-                  </CardContent>
-                </Card>
-              </GlowingBorder>
+                  </div>
+                </div>
+                
+                <div className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-700">
+                  <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-4">Connect With Me</h4>
+                  <div className="flex space-x-4">
+                    <a 
+                      href="https://github.com/rupak122" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="p-3 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
+                    >
+                      <Github size={20} />
+                    </a>
+                    <a 
+                      href="https://linkedin.com/in/rupak8770985" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="p-3 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
+                    >
+                      <Linkedin size={20} />
+                    </a>
+                    <a 
+                      href="mailto:rupak8770985@gmail.com" 
+                      className="p-3 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
+                    >
+                      <Mail size={20} />
+                    </a>
+                    <a 
+                      href="tel:+919871510636" 
+                      className="p-3 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
+                    >
+                      <Phone size={20} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </RevealOnScroll>
+            
+            <RevealOnScroll animation="fade">
+              <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 rounded-xl shadow-xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjQiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=')]"></div>
+                
+                <div className="relative">
+                  <h3 className="text-xl font-bold mb-4">Looking for a developer?</h3>
+                  <p className="text-white/80 mb-6">
+                    I'm currently available for freelance work and full-time opportunities. Let's build something amazing together.
+                  </p>
+                  
+                  <Button asChild variant="secondary" className="bg-white text-blue-600 hover:bg-blue-50">
+                    <a href="mailto:rupak8770985@gmail.com">
+                      <Mail size={16} className="mr-2" />
+                      <span>Drop me an email</span>
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </RevealOnScroll>
+          </div>
+          
+          {/* Contact Form - 3 columns */}
+          <RevealOnScroll animation="slide" direction="right" className="lg:col-span-3">
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-xl p-8 border border-slate-200 dark:border-slate-700">
+              <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6">Send A Message</h3>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                      Your name
+                    </label>
+                    <Input 
+                      id="name" 
+                      placeholder="Enter your name" 
+                      className="border-slate-200 focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800/60"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                      Email address
+                    </label>
+                    <Input 
+                      id="email" 
+                      placeholder="Your email address" 
+                      type="email" 
+                      className="border-slate-200 focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800/60"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="subject" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                    Subject
+                  </label>
+                  <Input 
+                    id="subject" 
+                    placeholder="Subject" 
+                    className="border-slate-200 focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800/60"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                    Message
+                  </label>
+                  <Textarea 
+                    id="message" 
+                    placeholder="Your message" 
+                    rows={6} 
+                    className="border-slate-200 focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800/60"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-6 flex items-center justify-center group">
+                  <Send size={18} className="mr-2 group-hover:translate-x-1 transition-transform" />
+                  <span>Send Message</span>
+                </Button>
+              </form>
             </div>
           </RevealOnScroll>
         </div>
       </div>
-    </AnimatedBackground>
+    </section>
   );
 };
 
