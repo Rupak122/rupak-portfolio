@@ -17,7 +17,7 @@ const GlowingBorder = ({
   if (elegant) {
     return (
       <div 
-        className={`relative p-[1px] rounded-lg overflow-hidden shadow-lg ${className}`}
+        className={`relative p-[1px] rounded-lg overflow-hidden shadow-lg transition-all duration-500 hover:shadow-xl ${className}`}
         style={{
           background: `linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.2) 100%)`,
           boxShadow: '0 8px 32px rgba(31, 38, 135, 0.15)'
@@ -32,7 +32,7 @@ const GlowingBorder = ({
   
   return (
     <div 
-      className={`relative p-[1px] rounded-lg overflow-hidden ${className}`}
+      className={`relative p-[1px] rounded-lg overflow-hidden ${className} hover:shadow-lg transition-all duration-300`}
       style={{
         background: `
           linear-gradient(

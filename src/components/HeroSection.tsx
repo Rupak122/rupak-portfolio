@@ -21,12 +21,12 @@ const HeroSection = () => {
   };
 
   return (
-    <AnimatedBackground variant="gradient" className="py-16 flex flex-col justify-center items-center overflow-hidden">
+    <AnimatedBackground variant="gradient" className="py-16 flex flex-col justify-center items-center overflow-hidden w-full">
       <FloatingElements count={8} className="absolute inset-0">
         <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-purple-500/10"></div>
       </FloatingElements>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 max-w-none w-full">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
           {/* Profile Image with elegant design */}
           <div className={`lg:col-span-2 flex justify-center lg:justify-end transform ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'} transition-all duration-1000 ease-out`}>
@@ -37,7 +37,7 @@ const HeroSection = () => {
                     <img 
                       src="./lovable-uploads/profile.png" 
                       alt="Rupak Kumar Singh" 
-                      className="w-56 h-56 object-cover rounded-lg shadow-md transform group-hover:scale-[1.02] transition-all duration-500"
+                      className="w-64 h-64 md:w-72 md:h-72 object-cover rounded-lg shadow-md transform group-hover:scale-[1.02] transition-all duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
@@ -49,7 +49,7 @@ const HeroSection = () => {
           {/* Bio Content with elegant design */}
           <div className="lg:col-span-3 space-y-6">
             <div className={`relative ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-[30px]'} transition-all duration-1000 ease-out delay-300`}>
-              <h1 className="text-3xl lg:text-4xl font-bold text-slate-800 dark:text-white mb-2">Rupak Kumar Singh</h1>
+              <h1 className="text-3xl lg:text-5xl font-bold text-slate-800 dark:text-white mb-2">Rupak Kumar Singh</h1>
               
               <div className="flex items-center text-xl text-blue-600 dark:text-blue-400 font-medium mb-4">
                 <TypewriterText 
@@ -61,7 +61,7 @@ const HeroSection = () => {
               
               <GlowingBorder elegant={true} className="mt-4">
                 <div className="bg-white dark:bg-slate-800 p-5 rounded-lg">
-                  <p className="text-slate-700 dark:text-slate-300">
+                  <p className="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
                     Experienced Software Engineer with 5+ years creating scalable web applications 
                     and delivering clean, efficient code across diverse projects.
                   </p>

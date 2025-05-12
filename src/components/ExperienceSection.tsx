@@ -2,32 +2,8 @@
 import React from 'react';
 import { Briefcase, Calendar, MapPin, Building } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import RevealOnScroll from './RevealOnScroll';
 import GlowingBorder from './animations/GlowingBorder';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { ScrollArea } from "@/components/ui/scroll-area";
-
-interface TechBadgeProps {
-  name: string;
-}
-
-const TechBadge = ({ name }: TechBadgeProps) => {
-  return (
-    <Badge 
-      variant="outline" 
-      className="bg-blue-50 text-blue-600 border-blue-100 hover:bg-blue-100 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400 transition-all duration-300"
-    >
-      {name}
-    </Badge>
-  );
-};
 
 interface TimelineExperienceProps {
   title: string;
@@ -36,6 +12,7 @@ interface TimelineExperienceProps {
   location: string;
   achievements: string[];
   technologies?: string[];
+  isLeft: boolean;
 }
 
 const TimelineExperience = ({ 
@@ -45,51 +22,77 @@ const TimelineExperience = ({
   location, 
   achievements, 
   technologies,
+  isLeft
 }: TimelineExperienceProps) => {
   return (
-    <GlowingBorder elegant={true}>
-      <Card className="h-full bg-white dark:bg-slate-800 transition-all duration-300 hover:shadow-xl border-0 overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-800 p-4">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-            {title}
-          </h3>
-          <div className="flex items-center mt-1">
-            <Building size={14} className="mr-1 text-blue-500" />
-            <span className="font-medium text-sm text-blue-600 dark:text-blue-400">{company}</span>
-            <span className="mx-2 text-slate-400">|</span>
-            <MapPin size={14} className="mr-1 text-slate-500" />
-            <span className="text-sm text-slate-500 dark:text-slate-400">{location}</span>
-            <span className="mx-2 text-slate-400">|</span>
-            <Calendar size={14} className="mr-1 text-slate-500" />
-            <span className="text-sm text-slate-500 dark:text-slate-400">{period}</span>
-          </div>
-        </div>
-        
-        <CardContent className="p-4 relative z-10">
-          <ScrollArea className="h-28 pr-4">
-            <ul className="space-y-2 text-slate-600 dark:text-slate-300">
-              {achievements.map((achievement, index) => (
-                <li key={index} className="flex items-start text-sm">
-                  <span className="text-blue-500 mr-2">•</span>
-                  <span>{achievement}</span>
-                </li>
-              ))}
-            </ul>
-          </ScrollArea>
-          
-          {technologies && technologies.length > 0 && (
-            <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-700">
-              <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2">TECHNOLOGIES</h4>
-              <div className="flex flex-wrap gap-1.5">
-                {technologies.map((tech, index) => (
-                  <TechBadge key={index} name={tech} />
-                ))}
+    <div className={`flex w-full ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}>
+      {/* Timeline center line with dot */}
+      <div className="flex-none w-6 relative flex justify-center">
+        <div className="h-full w-[2px] bg-blue-200 dark:bg-blue-800 absolute"></div>
+        <div className="w-4 h-4 rounded-full bg-blue-500 relative z-10 top-10 shadow-md"></div>
+      </div>
+      
+      {/* Content area taking 50% width */}
+      <div className={`w-[calc(50%-1.5rem)] ${isLeft ? 'pr-6' : 'pl-6'}`}>
+        <RevealOnScroll threshold={0.1} direction={isLeft ? "left" : "right"}>
+          <GlowingBorder elegant={true}>
+            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden">
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-800 p-4">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                  {title}
+                </h3>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mt-1 flex-wrap">
+                  <div className="flex items-center">
+                    <Building size={14} className="mr-1 text-blue-500" />
+                    <span className="font-medium text-sm text-blue-600 dark:text-blue-400">{company}</span>
+                  </div>
+                  <div className="hidden sm:block text-slate-400">|</div>
+                  <div className="flex items-center">
+                    <MapPin size={14} className="mr-1 text-slate-500" />
+                    <span className="text-sm text-slate-500 dark:text-slate-400">{location}</span>
+                  </div>
+                  <div className="hidden sm:block text-slate-400">|</div>
+                  <div className="flex items-center">
+                    <Calendar size={14} className="mr-1 text-slate-500" />
+                    <span className="text-sm text-slate-500 dark:text-slate-400">{period}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="p-4 relative z-10">
+                <div className="max-h-48 overflow-y-auto pr-2">
+                  <ul className="space-y-2 text-slate-600 dark:text-slate-300">
+                    {achievements.map((achievement, index) => (
+                      <li key={index} className="flex items-start text-sm">
+                        <span className="text-blue-500 mr-2">•</span>
+                        <span>{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                {technologies && technologies.length > 0 && (
+                  <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-700">
+                    <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2">TECHNOLOGIES</h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {technologies.map((tech, index) => (
+                        <Badge 
+                          key={index}
+                          variant="outline" 
+                          className="bg-blue-50 text-blue-600 border-blue-100 hover:bg-blue-100 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400 transition-all duration-300"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-          )}
-        </CardContent>
-      </Card>
-    </GlowingBorder>
+          </GlowingBorder>
+        </RevealOnScroll>
+      </div>
+    </div>
   );
 };
 
@@ -170,37 +173,28 @@ const ExperienceSection = () => {
           </div>
         </RevealOnScroll>
         
-        <div className="max-w-5xl mx-auto px-4">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {experiences.map((exp, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="h-full">
-                    <RevealOnScroll threshold={0.1} delay={index * 100} direction="right">
-                      <TimelineExperience
-                        title={exp.title}
-                        company={exp.company}
-                        period={exp.period}
-                        location={exp.location}
-                        achievements={exp.achievements}
-                        technologies={exp.technologies}
-                      />
-                    </RevealOnScroll>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="flex items-center justify-center gap-4 mt-6">
-              <CarouselPrevious className="static translate-y-0" />
-              <CarouselNext className="static translate-y-0" />
+        <div className="max-w-5xl mx-auto">
+          <div className="space-y-12">
+            {experiences.map((exp, index) => (
+              <TimelineExperience
+                key={index}
+                title={exp.title}
+                company={exp.company}
+                period={exp.period}
+                location={exp.location}
+                achievements={exp.achievements}
+                technologies={exp.technologies}
+                isLeft={index % 2 === 0}
+              />
+            ))}
+            
+            {/* Final dot at the end of timeline */}
+            <div className="flex justify-center">
+              <div className="w-6 flex justify-center">
+                <div className="w-4 h-4 rounded-full bg-blue-200 dark:bg-blue-800"></div>
+              </div>
             </div>
-          </Carousel>
+          </div>
         </div>
       </div>
     </section>

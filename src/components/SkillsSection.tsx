@@ -1,22 +1,21 @@
 
 import React from 'react';
-import { Code, Database, Layout, Server, Terminal, FileCode2, Grid2X2 } from "lucide-react";
+import { Code, Database, Layout, Server } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import RevealOnScroll from './RevealOnScroll';
 import GlowingBorder from './animations/GlowingBorder';
 
 interface SkillCategoryProps {
   title: string;
   icon: React.ReactNode;
-  skills: Array<{ name: string; level: number }>;
+  skills: string[];
 }
 
 const SkillCategory = ({ title, icon, skills }: SkillCategoryProps) => {
   return (
     <RevealOnScroll>
       <GlowingBorder elegant={true}>
-        <Card className="hover:shadow-lg transition-all duration-300 border-slate-200 dark:border-slate-700 overflow-hidden group">
+        <Card className="hover:shadow-lg transition-all duration-300 border-slate-200 dark:border-slate-700 overflow-hidden h-full">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-800 p-3 flex items-center">
             <div className="p-2 rounded-full bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 mr-2">
               {icon}
@@ -24,19 +23,14 @@ const SkillCategory = ({ title, icon, skills }: SkillCategoryProps) => {
             <h3 className="font-medium text-slate-800 dark:text-white">{title}</h3>
           </div>
           
-          <CardContent className="p-3 relative z-10 bg-white dark:bg-slate-800">
-            <div className="grid grid-cols-2 gap-1">
+          <CardContent className="p-4 relative z-10 bg-white dark:bg-slate-800">
+            <div className="grid grid-cols-2 gap-2">
               {skills.map((skill, index) => (
-                <div key={index} className="flex items-center justify-between p-1 hover:bg-slate-50 dark:hover:bg-slate-700 rounded transition-colors">
-                  <span className="text-sm text-slate-700 dark:text-slate-300">
-                    {skill.name}
-                  </span>
-                  <Badge 
-                    variant="outline" 
-                    className="text-xs bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700"
-                  >
-                    {skill.level}/5
-                  </Badge>
+                <div 
+                  key={index} 
+                  className="py-1.5 px-2 rounded hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors text-slate-700 dark:text-slate-300 text-sm"
+                >
+                  {skill}
                 </div>
               ))}
             </div>
@@ -49,39 +43,23 @@ const SkillCategory = ({ title, icon, skills }: SkillCategoryProps) => {
 
 const SkillsSection = () => {
   const frontendSkills = [
-    { name: "React", level: 5 },
-    { name: "Angular", level: 4 },
-    { name: "TypeScript", level: 5 },
-    { name: "JavaScript", level: 5 },
-    { name: "HTML5/CSS3", level: 5 },
-    { name: "Tailwind CSS", level: 4 }
+    "React", "Angular", "TypeScript", 
+    "JavaScript", "HTML5/CSS3", "Tailwind CSS"
   ];
   
   const backendSkills = [
-    { name: "Node.js", level: 5 },
-    { name: "Express.js", level: 5 },
-    { name: "GraphQL", level: 4 },
-    { name: "REST APIs", level: 5 },
-    { name: "Nest.js", level: 3 },
-    { name: "Fastify", level: 3 }
+    "Node.js", "Express.js", "GraphQL", 
+    "REST APIs", "Nest.js", "Fastify"
   ];
   
   const databaseSkills = [
-    { name: "MongoDB", level: 5 },
-    { name: "PostgreSQL", level: 4 },
-    { name: "MySQL", level: 4 },
-    { name: "Firebase", level: 4 },
-    { name: "Redis", level: 3 },
-    { name: "Prisma", level: 4 }
+    "MongoDB", "PostgreSQL", "MySQL", 
+    "Firebase", "Redis", "Prisma"
   ];
   
   const devOpsSkills = [
-    { name: "AWS", level: 4 },
-    { name: "Docker", level: 4 },
-    { name: "CI/CD", level: 4 },
-    { name: "Kubernetes", level: 3 },
-    { name: "GitHub Actions", level: 4 },
-    { name: "Nginx", level: 3 }
+    "AWS", "Docker", "CI/CD", 
+    "Kubernetes", "GitHub Actions", "Nginx"
   ];
   
   return (
@@ -118,7 +96,7 @@ const SkillsSection = () => {
           
           <SkillCategory 
             title="DevOps" 
-            icon={<FileCode2 size={18} />}
+            icon={<Code size={18} />}
             skills={devOpsSkills}
           />
         </div>

@@ -29,7 +29,7 @@ const Index = () => {
       
       <NavBar />
       
-      <main className="relative z-10">
+      <main className="relative z-10 w-full">
         <HeroSection />
         <ExperienceSection />
         <SkillsSection />
