@@ -6,13 +6,15 @@ interface RevealOnScrollProps {
   threshold?: number;
   delay?: number;
   direction?: 'up' | 'down' | 'left' | 'right';
+  animation?: 'fade' | 'slide' | 'scale' | 'flip' | 'rotate' | 'bounce';
 }
 
 const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ 
   children, 
   threshold = 0.1, 
   delay = 0,
-  direction = 'up'
+  direction = 'up',
+  animation = 'fade'
 }) => {
   // Using useState and useRef safely
   const ref = useRef<HTMLDivElement>(null);
@@ -49,20 +51,58 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({
     };
   }, [threshold, delay]);
   
-  const getTransformClass = () => {
-    switch (direction) {
-      case 'up': return 'translate-y-10';
-      case 'down': return '-translate-y-10';
-      case 'left': return 'translate-x-10';
-      case 'right': return '-translate-x-10';
-      default: return 'translate-y-10';
+  const getInitialClasses = () => {
+    const baseClasses = 'opacity-0 transition-all duration-1000';
+    
+    if (animation === 'fade') {
+      switch (direction) {
+        case 'up': return `${baseClasses} translate-y-10`;
+        case 'down': return `${baseClasses} -translate-y-10`;
+        case 'left': return `${baseClasses} translate-x-10`;
+        case 'right': return `${baseClasses} -translate-x-10`;
+        default: return `${baseClasses} translate-y-10`;
+      }
     }
+    
+    if (animation === 'slide') {
+      switch (direction) {
+        case 'up': return `${baseClasses} translate-y-20`;
+        case 'down': return `${baseClasses} -translate-y-20`;
+        case 'left': return `${baseClasses} translate-x-20`;
+        case 'right': return `${baseClasses} -translate-x-20`;
+        default: return `${baseClasses} translate-y-20`;
+      }
+    }
+    
+    if (animation === 'scale') {
+      return `${baseClasses} scale-95`;
+    }
+    
+    if (animation === 'flip') {
+      switch (direction) {
+        case 'up': return `${baseClasses} rotateX-90`;
+        case 'down': return `${baseClasses} -rotateX-90`;
+        case 'left': return `${baseClasses} rotateY-90`;
+        case 'right': return `${baseClasses} -rotateY-90`;
+        default: return `${baseClasses} rotateX-90`;
+      }
+    }
+    
+    if (animation === 'rotate') {
+      return `${baseClasses} rotate-12`;
+    }
+    
+    if (animation === 'bounce') {
+      return `${baseClasses} -translate-y-4`;
+    }
+    
+    return baseClasses;
   };
   
   return (
     <div 
       ref={ref} 
-      className={`reveal ${getTransformClass()} opacity-0 transition-all duration-700`}
+      className={`reveal ${getInitialClasses()}`}
     >
       {children}
     </div>
