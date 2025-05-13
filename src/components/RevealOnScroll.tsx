@@ -7,6 +7,7 @@ interface RevealOnScrollProps {
   delay?: number;
   direction?: 'up' | 'down' | 'left' | 'right';
   animation?: 'fade' | 'slide' | 'scale' | 'flip' | 'rotate' | 'bounce';
+  className?: string; // Added className prop
 }
 
 const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ 
@@ -14,7 +15,8 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({
   threshold = 0.1, 
   delay = 0,
   direction = 'up',
-  animation = 'fade'
+  animation = 'fade',
+  className = '' // Default to empty string
 }) => {
   // Using useState and useRef safely
   const ref = useRef<HTMLDivElement>(null);
@@ -102,7 +104,7 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({
   return (
     <div 
       ref={ref} 
-      className={`reveal ${getInitialClasses()}`}
+      className={`reveal ${getInitialClasses()} ${className}`}
     >
       {children}
     </div>
