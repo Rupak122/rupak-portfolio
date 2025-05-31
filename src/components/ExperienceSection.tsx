@@ -95,8 +95,8 @@ const TimelineItem = ({
 const ExperienceSection = () => {
   const experiences = [
     {
-      title: "Full Stack Developer",
-      company: "Self-employed",
+      title: "Technical lead",
+      company: "Freelance",
       period: "2022-Present",
       location: "New Delhi, INDIA",
       achievements: [
@@ -113,7 +113,7 @@ const ExperienceSection = () => {
     {
       title: "Software Engineer",
       company: "Skugal",
-      period: "2020-2024",
+      period: "2020-2022",
       location: "Remote",
       achievements: [
         "Built full-stack apps with React, Angular, Node.js, MongoDB",
@@ -125,36 +125,36 @@ const ExperienceSection = () => {
         "React", "Angular", "TypeScript", "Node.js", "MongoDB", "SQL"
       ]
     },
-    {
-      title: "Front-end Developer",
-      company: "Digital Solutions",
-      period: "2019-2020",
-      location: "Bangalore",
-      achievements: [
-        "Developed responsive web apps using React and Vue.js",
-        "Implemented Redux/Vuex state management solutions",
-        "Transformed mockups into functional UIs",
-        "Optimized frontend for 40% faster load times"
-      ],
-      technologies: [
-        "React", "Vue.js", "Redux", "CSS3", "SASS", "Webpack"
-      ]
-    },
-    {
-      title: "Web Dev Intern",
-      company: "TechStart",
-      period: "2018",
-      location: "Delhi",
-      achievements: [
-        "Built UI components with HTML, CSS, and JavaScript",
-        "Participated in agile development processes",
-        "Created documentation for code and processes",
-        "Developed small projects under supervision"
-      ],
-      technologies: [
-        "HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap"
-      ]
-    }
+    // {
+    //   title: "Front-end Developer",
+    //   company: "Digital Solutions",
+    //   period: "2019-2020",
+    //   location: "Bangalore",
+    //   achievements: [
+    //     "Developed responsive web apps using React and Vue.js",
+    //     "Implemented Redux/Vuex state management solutions",
+    //     "Transformed mockups into functional UIs",
+    //     "Optimized frontend for 40% faster load times"
+    //   ],
+    //   technologies: [
+    //     "React", "Vue.js", "Redux", "CSS3", "SASS", "Webpack"
+    //   ]
+    // },
+    // {
+    //   title: "Web Dev Intern",
+    //   company: "TechStart",
+    //   period: "2018",
+    //   location: "Delhi",
+    //   achievements: [
+    //     "Built UI components with HTML, CSS, and JavaScript",
+    //     "Participated in agile development processes",
+    //     "Created documentation for code and processes",
+    //     "Developed small projects under supervision"
+    //   ],
+    //   technologies: [
+    //     "HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap"
+    //   ]
+    // }
   ];
 
   return (
